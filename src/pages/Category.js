@@ -14,7 +14,7 @@ import { db } from '../firebase.config';
 import { toast } from 'react-toastify';
 import ListingItems from '../components/ListingItems';
 
-const Offers = () => {
+const Category = () => {
 	const [listings, setListings] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [lastFetchedListing, setLastFetchedListing] = useState(null);
@@ -30,7 +30,7 @@ const Offers = () => {
 				// Create a query
 				const q = query(
 					listingsRef,
-					where('offer', '==', true),
+					where('type', '==', params.categoryName),
 					orderBy('timestamp', 'desc'),
 					limit(10)
 				);
@@ -58,7 +58,7 @@ const Offers = () => {
 		};
 
 		fetchListings();
-	}, []);
+	}, [params.categoryName]);
 
 	// Pagination / Load More
 	const onFetchMoreListings = async () => {
@@ -100,7 +100,7 @@ const Offers = () => {
 	return (
 		<div className=' w-screen h-[90vh] '>
 			<p className=' text-center text-2xl font-semibold text-gray-300 capitalize p-3 bg-black'>
-				offers
+				{params.categoryName === 'rent' ? 'places for rent' : 'places for sale'}
 			</p>
 			{loading ? (
 				<ImSpinner3 className=' items-center text-indigo-500 text-5xl  absolute top-[50%] right-[50%] animate-spin ' />
@@ -130,10 +130,10 @@ const Offers = () => {
 					)}
 				</>
 			) : (
-				<p>No offers so far</p>
+				<p>No listings for {params.categoryName}</p>
 			)}
 		</div>
 	);
 };
 
-export default Offers;
+export default Category;

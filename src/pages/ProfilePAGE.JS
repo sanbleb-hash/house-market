@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Profilepage = () => {
+	const navigate = useNavigate();
+
 	const auth = getAuth();
 	const navegate = useNavigate();
 
@@ -42,7 +44,9 @@ const Profilepage = () => {
 				</button>{' '}
 			</div>
 			<section className=' w-[80vw] min-h-[70vh] mx-auto'>
-				<p className=' pt-7'>Personal details</p>
+				<p className=' pt-7 font-semibold text-xl text-gray-600 '>
+					Personal details
+				</p>
 				<p
 					className=' text-green-500 text-right'
 					onClick={() => {
@@ -52,16 +56,14 @@ const Profilepage = () => {
 				>
 					{changeDetails ? 'done' : 'change'}
 				</p>
-				<form className=' w-[60vw] bg-slate-200 mx-auto p-8'>
+				<form className=' w-[60vw] bg-slate-200 mx-auto flex items-center justify-between flex-col py-5'>
 					<input
 						onChange={onChange}
 						value={name}
 						id='name'
 						type='text'
 						className={
-							!changeDetails
-								? 'w-3/4 mx-auto pl-6 mb-7 '
-								: 'w-3/4 mx-auto pl-6 mb-7'
+							!changeDetails ? 'w-3/4 mx-auto pl-6 mb-7 ' : 'w-3/4 mx-auto pl-6'
 						}
 						disabled={!changeDetails}
 						placeholder='name'
@@ -78,6 +80,15 @@ const Profilepage = () => {
 						placeholder='email'
 					/>
 				</form>
+				<p
+					className=' bg-green-400 text-white px-5 py-1 ca[
+                   shadow-xl
+               ] self-end mt-5 inline-block'
+					onClick={() => navigate('/create-listing')}
+				>
+					create listing to{' '}
+					<span className=' italic text-green-800'>sale or rent out</span>
+				</p>
 			</section>
 		</main>
 	);
