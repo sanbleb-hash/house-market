@@ -16,6 +16,7 @@ import {
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import console from 'console-browserify';
+import Oauth from '../components/Oauth';
 
 const Signup = () => {
 	const navigate = useNavigate();
@@ -122,6 +123,7 @@ const Signup = () => {
 				<Link to='/login'>
 					<span className=' text-green-500'>log in istead </span>
 				</Link>
+				<Oauth />
 			</form>
 		</div>
 	);

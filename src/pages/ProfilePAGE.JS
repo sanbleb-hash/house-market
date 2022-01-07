@@ -25,7 +25,7 @@ const Profilepage = () => {
 	};
 
 	return (
-		<main className=' bg-slate-100 h-[90vw] w-screen  '>
+		<main className=' bg-slate-100 min-h-[90vh] w-screen  '>
 			<div className=' bg-black text-white w-full h-[8vh] flex items-center justify-between px-[15%]'>
 				{' '}
 				<h1 className=' capitalize'>my profile</h1>

@@ -3,6 +3,7 @@ import { MdEmail, MdOutlineSend, MdRemoveRedEye } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import Oauth from '../components/Oauth';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -89,6 +90,10 @@ const Login = () => {
 				<Link to='/sign-up'>
 					<span className=' text-green-500'>sing up instead </span>
 				</Link>
+				<h2>
+					{' '}
+					<Oauth />
+				</h2>
 			</form>
 		</div>
 	);
