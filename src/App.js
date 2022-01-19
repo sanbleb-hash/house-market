@@ -8,7 +8,7 @@ import Offers from './pages/Offers';
 
 import Login from './pages/Login';
 import Signup from './pages/SignUp';
-import Profilepage from './pages/Profilepage';
+import Profile from './pages/Profile';
 import PrivateRouts from './components/PrivateRouts';
 import Category from './pages/Category';
 import CreateListings from './pages/CreateListings';
@@ -32,7 +32,7 @@ export default function App() {
 						element={<Listing />}
 					/>
 					<Route path='/profile' element={<PrivateRouts />}>
-						<Route path='/profile' element={<Profilepage />} />
+						<Route path='/profile' element={<Profile />} />
 					</Route>
 				</Routes>
 			</main>

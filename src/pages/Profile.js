@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 import ListingItems from '../components/ListingItems';
 
-const Profilepage = () => {
+const Profile = () => {
 	const navigate = useNavigate();
 
 	const auth = getAuth();
@@ -162,4 +162,4 @@ const Profilepage = () => {
 	);
 };
 
-export default Profilepage;
+export default Profile;
