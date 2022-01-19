@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build NODE_ENV=production",
+    "build": "NODE_ENV=production react-scripts build ",
     "test": "react-scripts test",
     "watch:css": "npx tailwind ./src/tailwind.css -o src/index.css -w",
     "eject": "react-scripts eject"
