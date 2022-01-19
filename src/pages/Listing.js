@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { FaShareAlt } from 'react-icons/fa';
 import Loading from '../components/Loading';
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const Listing = () => {
 	const [listing, setListing] = useState(null);
@@ -37,7 +40,21 @@ const Listing = () => {
 	return (
 		<main className=' w-screen min-h-[90vh] bg-slate-100 '>
 			<div className=' w-[80vw] mx-auto '>
-				{/* slider */}
+				<div className=' pt-10'>
+					<Swiper slidesPerView={1} pagination={{ clickable: true }}>
+						{listing.imgUrls.map((url, index) => (
+							<SwiperSlide key={index}>
+								<div
+									style={{
+										background: `url(${listing.imgUrls[index]}) center no-repeat`,
+										backgroundSize: 'cover',
+									}}
+									className='w-full h-[60vh]  '
+								></div>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				</div>
 				<div className='py-5 mx-7 flex flex-col  justify-between items-end   '>
 					<FaShareAlt
 						className='cursor-pointer mr-7'
@@ -94,7 +111,7 @@ const Listing = () => {
 
 					<p className=' py-4 font-medium '>Location</p>
 
-					<div className='leafletContainer'>
+					<div className='w-full h-[50vh] pb-5'>
 						<MapContainer
 							style={{ height: '100%', width: '100%' }}
 							center={[listing.geolocation.lat, listing.geolocation.lng]}

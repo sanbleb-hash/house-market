@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
-import { getAuth, updateProfile } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import {
+	doc,
+	collection,
+	getDocs,
+	query,
+	orderBy,
+	deleteDoc,
+	where,
+} from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+
+import ListingItems from '../components/ListingItems';
 
 const Profilepage = () => {
 	const navigate = useNavigate();
@@ -16,6 +26,9 @@ const Profilepage = () => {
 		email: auth.currentUser.email,
 	});
 
+	const [listings, setListings] = useState(null);
+	const [loading, setLoading] = useState(true);
+
 	const { name, email } = formData;
 
 	const onSubmit = () => {};
@@ -24,6 +37,43 @@ const Profilepage = () => {
 			...prevState,
 			[e.target.id]: e.target.value,
 		}));
+	};
+	useEffect(() => {
+		const fetchUserListings = async () => {
+			const listingsRef = collection(db, 'listings');
+
+			const q = query(
+				listingsRef,
+				where('userRef', '==', auth.currentUser.uid),
+				orderBy('timestamp', 'desc')
+			);
+
+			const querySnap = await getDocs(q);
+
+			let listings = [];
+
+			querySnap.forEach((doc) => {
+				return listings.push({
+					id: doc.id,
+					data: doc.data(),
+				});
+			});
+
+			setListings(listings);
+			setLoading(false);
+		};
+
+		fetchUserListings();
+	}, [auth.currentUser.uid]);
+
+	const onDelete = async (listingId) => {
+		if (window.confirm('are you sure you want to delete ?')) {
+			await deleteDoc(doc, 'listings', listingId);
+			const updatedlistings = listings.filter(
+				(listing) => listing.id !== listingId
+			);
+			setListings(updatedlistings);
+		}
 	};
 
 	return (
@@ -89,6 +139,24 @@ const Profilepage = () => {
 					create listing to{' '}
 					<span className=' italic text-green-800'>sale or rent out</span>
 				</p>
+
+				<section className=' min-h-[40vh]'>
+					{!loading && listings?.length > 0 && (
+						<>
+							<h3 className='py-4'>my listings</h3>
+							<ul className='flex gap-4 flex-col md:flex-row pb-7'>
+								{listings.map((listing) => (
+									<ListingItems
+										key={listing.id}
+										listing={listing.data}
+										id={listing.id}
+										onDelete={() => onDelete(listing.id)}
+									/>
+								))}
+							</ul>
+						</>
+					)}
+				</section>
 			</section>
 		</main>
 	);

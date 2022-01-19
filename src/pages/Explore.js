@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Slider from '../components/slider';
 import rentCategoryImage from '../utils/assets/jpg/rentCategoryImage.jpg';
 import sellCategoryImage from '../utils/assets/jpg/sellCategoryImage.jpg';
 
@@ -9,7 +10,9 @@ const Explore = () => {
 		<main className=' bg-slate-100 w-screen  text-slate-500 min-h-[90vh]  '>
 			<section className='w-[80vw] mx-auto py-10 h-full '>
 				<h1 className='text-xl font-medium'>Explore</h1>
-				{/* slider */}
+				<div className='h-[60vh]'>
+					<Slider />
+				</div>
 				<div className='pt-10 min-h-[60vh]'>
 					<p className=' capitalize mb-20 text-lgb'>categories</p>
 					<div className=' flex flex-col md:flex-row items-center justify-between w-full px-5 gap-2 '>

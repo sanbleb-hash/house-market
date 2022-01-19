@@ -11,7 +11,7 @@ const NavBar = () => {
 	const active =
 		' text-slate-800 border-b-2 border-blue-400 pb-3 transition-all duration-100  ';
 	return (
-		<footer className=' text-slate-500 w-screen h-[10vh] bg-slate-200  '>
+		<footer className=' text-slate-500 w-screen h-[10vh] bg-slate-200 '>
 			<nav className='w-[80vw] mx-auto flex items-center justify-between my-auto py-3  '>
 				<NavLink
 					to='/'

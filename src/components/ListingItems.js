@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 const ListingItems = ({ listing, id, onEdit, onDelete }) => {
 	return (
-		<li className='shadow-lg rounded-md'>
+		<li className='shadow-lg rounded-md  '>
 			<Link
 				to={`/category/${listing.type}/${id}`}
-				className='shadow-lg rounded-md'
+				className='shadow-lg rounded-md flex items-center md:inline-block md:max-w-[300px] justify-between '
 			>
 				<img
 					src={listing.imgUrls[0]}
 					alt={listing.name}
-					className='categoryListingImg'
+					className=' inline-block w-1/2 h-full md:w-full '
 				/>
 				<div className='bg-slate-100 p-3 text-gray-800 rounded-b-md'>
 					<p className=' font-medium'>{listing.location}</p>
@@ -47,15 +47,14 @@ const ListingItems = ({ listing, id, onEdit, onDelete }) => {
 						</p>
 					</div>
 				</div>
+				{onDelete && (
+					<FaTrash
+						className=' self-end m-3'
+						fill='rgb(231, 76,60)'
+						onClick={() => onDelete(listing.id, listing.name)}
+					/>
+				)}
 			</Link>
-
-			{onDelete && (
-				<FaTrash
-					className=''
-					fill='rgb(231, 76,60)'
-					onClick={() => onDelete(listing.id, listing.name)}
-				/>
-			)}
 
 			{onEdit && <FaPen size={30} color='gray' onClick={() => onEdit(id)} />}
 		</li>

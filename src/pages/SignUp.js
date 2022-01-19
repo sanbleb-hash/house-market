@@ -15,7 +15,6 @@ import {
 } from 'react-icons/md';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
-import console from 'console-browserify';
 import Oauth from '../components/Oauth';
 
 const Signup = () => {
