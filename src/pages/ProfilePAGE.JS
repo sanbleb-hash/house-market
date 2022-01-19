@@ -83,7 +83,7 @@ const Profilepage = () => {
 				<p
 					className=' bg-green-400 text-white px-5 py-1 ca[
                    shadow-xl
-               ] self-end mt-5 inline-block'
+               ] self-end mt-5 inline-block cursor-pointer hover:bg-green-500 transition-all delay-75   '
 					onClick={() => navigate('/create-listing')}
 				>
 					create listing to{' '}

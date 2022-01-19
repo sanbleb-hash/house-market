@@ -98,7 +98,7 @@ const Offers = () => {
 	};
 
 	return (
-		<div className=' w-screen h-[90vh] '>
+		<div className=' w-screen  min-h-[90vh] '>
 			<p className=' text-center text-2xl font-semibold text-gray-300 capitalize p-3 bg-black'>
 				offers
 			</p>
@@ -106,8 +106,8 @@ const Offers = () => {
 				<ImSpinner3 className=' items-center text-indigo-500 text-5xl  absolute top-[50%] right-[50%] animate-spin ' />
 			) : listings && listings.length > 0 ? (
 				<>
-					<main className=' w-[80vw] mx-auto '>
-						<ul className='flex items-center justify-between'>
+					<main className=' w-[80vw] mx-auto pt-10 '>
+						<ul className='flex items-center justify-between md:max-w-[350px]'>
 							{listings.map((listing) => (
 								<ListingItems
 									listing={listing.data}
@@ -122,7 +122,7 @@ const Offers = () => {
 					<br />
 					{lastFetchedListing && (
 						<p
-							className='px-5 py-2 bg-blue-300 text-gray-700'
+							className='px-5 py-2 bg-blue-300 text-gray-700 inline-block text-sm'
 							onClick={onFetchMoreListings}
 						>
 							Load More

@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function CreateListings() {
 	// eslint-disable-next-line
-	const [geolocationEnabled, setGeolocationEnabled] = useState(true);
+	const [geolocationEnabled, setGeolocationEnabled] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		type: 'rent',
@@ -215,7 +215,7 @@ function CreateListings() {
 	return (
 		<div className=' bg-slate-100 min-h-[90vh] w-screen  '>
 			<header>
-				<p className=' bg-black text-white w-full h-[8vh] text-center py-2'>
+				<p className=' bg-black text-white w-full h-[8vh] text-center py-2 fixed'>
 					Create a Listing
 				</p>
 			</header>
@@ -357,7 +357,7 @@ function CreateListings() {
 					</div>
 					<div className=' flex flex-col pb-3'>
 						<label className='py-2'>Address</label>
-						<textarea
+						<input
 							className=' max-w-[200px] '
 							type='text'
 							id='address'

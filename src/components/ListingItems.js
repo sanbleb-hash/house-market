@@ -4,40 +4,43 @@ import { Link } from 'react-router-dom';
 
 const ListingItems = ({ listing, id, onEdit, onDelete }) => {
 	return (
-		<li className='categoryListing'>
+		<li className='shadow-lg rounded-md'>
 			<Link
 				to={`/category/${listing.type}/${id}`}
-				className='categoryListingLink'
+				className='shadow-lg rounded-md'
 			>
 				<img
 					src={listing.imgUrls[0]}
 					alt={listing.name}
 					className='categoryListingImg'
 				/>
-				<div className='categoryListingDetails'>
-					<p className='categoryListingLocation'>{listing.location}</p>
-					<p className='categoryListingName'>{listing.name}</p>
+				<div className='bg-slate-100 p-3 text-gray-800 rounded-b-md'>
+					<p className=' font-medium'>{listing.location}</p>
+					<span className=' flex items-center justify-between'>
+						<p className='font-medium'>{listing.name}</p>
 
-					<p className='categoryListingPrice'>
-						$
-						{listing.offer
-							? listing.discountedPrice
-									.toString()
-									.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-							: listing.regularPrice
-									.toString()
-									.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-						{listing.type === 'rent' && ' / Month'}
-					</p>
-					<div className='categoryListingInfoDiv'>
-						<FaBed size={30} color='gray' />
+						<p className='text-sm font-semibold underline'>
+							$
+							{listing.offer
+								? listing.discountedPrice
+										.toString()
+										.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+								: listing.regularPrice
+										.toString()
+										.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+							{listing.type === 'rent' && ' / Month'}
+						</p>
+					</span>
+					<div className=' flex items-center justify-between pt-5 '>
 						<p className=''>
+							<FaBed size={28} color='gray' />
 							{listing.bedrooms > 1
 								? `${listing.bedrooms} Bedrooms`
 								: '1 Bedroom'}
 						</p>
-						<FaBath size={30} color='gray' />
+
 						<p className='categoryListingInfoText'>
+							<FaBath size={18} color='gray' />
 							{listing.bathrooms > 1
 								? `${listing.bathrooms} Bathrooms`
 								: '1 Bathroom'}

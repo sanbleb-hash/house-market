@@ -12,23 +12,30 @@ import Profilepage from './pages/Profilepage';
 import PrivateRouts from './components/PrivateRouts';
 import Category from './pages/Category';
 import CreateListings from './pages/CreateListings';
+import Listing from './pages/Listing';
 
 export default function App() {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path='/' element={<Explore />} />
-				<Route path='/offers' element={<Offers />} />
-				<Route path='/category/:categoryName' element={<Category />} />
+			<main className=' min-h-[90vh] bg-gray-300'>
+				<Routes>
+					<Route path='/' element={<Explore />} />
+					<Route path='/offers' element={<Offers />} />
+					<Route path='/category/:categoryName' element={<Category />} />
 
-				<Route path='/sign-up' element={<Signup />} />
-				<Route path='/login' element={<Login />} />
-				<Route path='/forgot-password' element={<ForgotPassord />} />
-				<Route path='/create-listing' element={<CreateListings />} />
-				<Route path='/profile' element={<PrivateRouts />}>
-					<Route path='/profile' element={<Profilepage />} />
-				</Route>
-			</Routes>
+					<Route path='/sign-up' element={<Signup />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/forgot-password' element={<ForgotPassord />} />
+					<Route path='/create-listing' element={<CreateListings />} />
+					<Route
+						path='/category/:categoryName/:listingId'
+						element={<Listing />}
+					/>
+					<Route path='/profile' element={<PrivateRouts />}>
+						<Route path='/profile' element={<Profilepage />} />
+					</Route>
+				</Routes>
+			</main>
 			<NavBar />
 			<ToastContainer />
 		</BrowserRouter>
